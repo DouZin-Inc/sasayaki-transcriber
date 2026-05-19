@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Models (large files)
+models/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# User keywords (contains personal names)
+keywords.txt
+
+# User prompt
+prompt.txt
+
+# Output files
+output/
+
+# History data
+history/
+
+# Installer-created directories
+python/
+ffmpeg/
+
+# Inno Setup output
+Output/

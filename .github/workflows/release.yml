@@ -1,0 +1,49 @@
+name: Build and Release Installer
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y
+
+      - name: Extract version from tag
+        id: version
+        shell: bash
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Inject version into version.py
+        shell: pwsh
+        run: |
+          $version = "${{ steps.version.outputs.version }}"
+          (Get-Content version.py) -replace '__version__ = "dev"', "__version__ = `"$version`"" | Set-Content version.py
+
+      - name: Ensure CRLF line endings for batch files
+        shell: pwsh
+        run: |
+          foreach ($file in Get-ChildItem -Filter *.bat) {
+            $content = [System.IO.File]::ReadAllText($file.FullName)
+            $content = $content -replace "`r`n", "`n" -replace "`n", "`r`n"
+            [System.IO.File]::WriteAllText($file.FullName, $content)
+          }
+
+      - name: Build installer
+        run: iscc /DMyAppVersion="${{ steps.version.outputs.version }}" installer.iss
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "Output/SasayakiSetup (${{ steps.version.outputs.version }}).exe"
+          generate_release_notes: true

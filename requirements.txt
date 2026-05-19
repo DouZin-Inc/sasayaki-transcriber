@@ -1,0 +1,6 @@
+faster-whisper>=1.1.0
+pyannote.audio>=3.3.0
+huggingface_hub>=0.13.0,<1.0.0
+gradio>=5.0.0
+pywebview>=5.0.0
+python-dotenv>=1.0.0
