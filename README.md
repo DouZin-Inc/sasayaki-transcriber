@@ -104,7 +104,7 @@ Adobe Premiere Pro等の動画編集ソフトにそのままインポートで�
 
 ## 開発者
 
-- **中井 悠人 (Yuto Nakai)** — 企画・設計・実装
+- **y.nakai** — 企画・設計・実装
   [@DZ-nakai](https://github.com/DZ-nakai) · [株式会社同人 (DouZin Inc.)](https://douzin.co.jp)
 
 本プロダクトは株式会社同人にて単独で企画から実装まで担当しました。
