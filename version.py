@@ -1,3 +1,3 @@
 """Sasayaki version definition."""
 
-__version__ = "1.2.14"
+__version__ = "dev"
